@@ -10,7 +10,7 @@ class Category(models.Model):
         verbose_name_plural = u"Categories"
 
     def __unicode__(self):
-        return u'%s' % self.id
+        return u'%s' % self.pk
 
 
 class Post(models.Model):
@@ -19,8 +19,8 @@ class Post(models.Model):
     content = models.TextField()
 
     def __unicode__(self):
-        return u'%s' % self.id
+        return u'%s' % self.pk
 
     @models.permalink
     def get_absolute_url(self):
-        return 'post-detail', (self.id,)
+        return 'post-detail', (self.pk,)

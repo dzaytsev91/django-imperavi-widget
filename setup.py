@@ -1,20 +1,20 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="django-imperavi",
-    version="0.2.3",
-    author="Vasyl Stanislavchuk",
-    author_email="vasyl.stanislavchuk@gmail.com",
+    name="django-imperavi-widget",
+    version="0.0.2",
+    author="Zaytsev Dmitriy",
+    author_email="zaytsev_dmitriy@aol.com",
     packages=find_packages(),
     include_package_data=True,
-    description="A django application that contains a class for admin interface to render a \
+    description="A django admin widget to render a \
         text field as beautiful Imperavi WYSIWYG editor http://redactorjs.com/",
-    long_description=open('README.rst', 'r').read(),
+    long_description=open('README.md', 'r').read(),
     license="MIT License",
-    keywords="django admin widget imperavi",
+    keywords="django admin imperavi widget",
     platforms=['any'],
     install_requires=[
         "sorl-thumbnail >= 11.12",
     ],
-    url="https://github.com/vasyabigi/django-imperavi",
+    url="https://github.com/dzaytsev91/django-imperavi-widget",
 )

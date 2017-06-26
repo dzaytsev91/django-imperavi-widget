@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db.models import TextField
 from django.conf import settings
 
-from widget import ImperaviWidget
+from .widget import ImperaviWidget
 
 
 class ImperaviAdmin(admin.ModelAdmin):
@@ -22,7 +22,7 @@ class ImperaviAdmin(admin.ModelAdmin):
     class Media:
         js = (
             '%simperavi/jquery.js' % settings.STATIC_URL,
-            '%simperavi/redactor/redactor.min.js' % settings.STATIC_URL,
+            '%simperavi/redactor/redactor.js' % settings.STATIC_URL,
         )
         css = {
             'all': (
@@ -48,7 +48,7 @@ class ImperaviStackedInlineAdmin(admin.StackedInline):
     class Media:
         js = (
             '%simperavi/jquery.js' % settings.STATIC_URL,
-            '%simperavi/redactor/redactor.min.js' % settings.STATIC_URL,
+            '%simperavi/redactor/redactor.js' % settings.STATIC_URL,
         )
         css = {
             'all': (

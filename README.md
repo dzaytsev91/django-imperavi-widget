@@ -1,23 +1,43 @@
 Django Imperavi editor
 ======================
+Supported versions
+------------
+Supports Django >=1.8 and Python 2/3
 
 Installation
 ------------
+```
+pip install git+https://github.com/dzaytsev91/django-imperavi-widget.git
+```
 
-#. Install or add ``django-imperavi`` to your python path.
+* Add ``imperavi`` to your ``INSTALLED_APPS`` setting.
 
-#. Add ``imperavi`` to your ``INSTALLED_APPS`` setting.
+* Add imperavi URL include to your project's ``urls.py`` file::
 
-#. Add imperavi URL include to your project's ``urls.py`` file::
+```
+url(r'^imperavi/', include('imperavi.urls')),
+```
 
-    url(r'^imperavi/', include('imperavi.urls')),
+Example
+-----
+```
+cd example/
+python manage.py migrate
+./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')"
+python manage.py runserver
+```
+Then go to [http://127.0.0.1:8000/admin/](127.0.0.1:8000/admin/) and try to create post instance
+
+login: admin 
+password: admin
+
 
 Usage
 -----
 
 The quickest way to add rich text editing capabilities to your admin is to use the included ``ImperaviAdmin`` class. For example::
 
-    from models import Category
+    from .models import Category
     from imperavi.admin import ImperaviAdmin
 
     class CategotyAdmin(ImperaviAdmin):
@@ -27,7 +47,7 @@ The quickest way to add rich text editing capabilities to your admin is to use t
 
 If you want to use it with inline admin models you need to use ``ImperaviStackedInlineAdmin`` class::
 
-    from models import Post
+    from .models import Post
     from imperavi.admin import ImperaviStackedInlineAdmin
 
     class PostInline(ImperaviStackedInlineAdmin):
@@ -40,18 +60,16 @@ Custom settings
 Add a ``IMPERAVI_CUSTOM_SETTINGS`` variable to your ``settings.py`` with custom config::
 
     IMPERAVI_CUSTOM_SETTINGS = {
-        'lang': 'ua',
-        'toolbar': 'mini',
         'resize': true
     }
 
-Full list of settings is `here.
-<http://redactorjs.com/docs/settings/>`_
+Full list of settings is here.
+[http://redactorjs.com/docs/settings/](ttp://redactorjs.com/docs/settings/)
 
 Media URL
 ---------
 
-You can also customize the URL that django-imperavi will look for the Editor media at by adding ``IMPERAVI_UPLOAD_PATH`` to your ``settings.py`` file like this::
+You can also customize the URL that django-imperavi-widget will look for the Editor media at by adding ``IMPERAVI_UPLOAD_PATH`` to your ``settings.py`` file like this::
 
     IMPERAVI_UPLOAD_PATH = 'imperavi-uploads/'
 
@@ -63,7 +81,7 @@ Unique images per model
 
 If you want to serve unique media content for specific model you can add ``unique_media = True`` to your admin class::
 
-    from models import Category
+    from .models import Category
     from imperavi.admin import ImperaviAdmin
 
     class CategotyAdmin(ImperaviAdmin):
