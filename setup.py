@@ -15,6 +15,7 @@ setup(
     platforms=['any'],
     install_requires=[
         "sorl-thumbnail >= 11.12",
+        "pillow >= 4.1.1",
     ],
     url="https://github.com/dzaytsev91/django-imperavi-widget",
 )
