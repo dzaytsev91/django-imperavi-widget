@@ -6,16 +6,17 @@ Supports Django >=1.8 and Python 2/3
 
 Installation
 ------------
+```
+pip install git+https://github.com/dzaytsev91/django-imperavi.git
+```
 
-#. pip install git+https://github.com/dzaytsev91/django-imperavi.git
+* Add ``imperavi`` to your ``INSTALLED_APPS`` setting.
 
-#. Install or add ``django-imperavi`` to your python path.
+* Add imperavi URL include to your project's ``urls.py`` file::
 
-#. Add ``imperavi`` to your ``INSTALLED_APPS`` setting.
-
-#. Add imperavi URL include to your project's ``urls.py`` file::
-
-    url(r'^imperavi/', include('imperavi.urls')),
+```
+url(r'^imperavi/', include('imperavi.urls')),
+```
 
 Example
 -----
