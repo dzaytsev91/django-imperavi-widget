@@ -9,11 +9,6 @@
       <li>
         <h3>Content:</h3>
         {{ category.content|safe }}
-        <ul>
-          {% for post in category.posts.all %}
-              <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
       </li>
     {% endfor %}
   </ul>
