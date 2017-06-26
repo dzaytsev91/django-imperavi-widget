@@ -1,3 +1,0 @@
-*.py linguist-language=Python
-imperavi/static/ linguist-vendored=false
-example/imperavi/static/ linguist-vendored=false
