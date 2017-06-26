@@ -1,7 +1,7 @@
-import md5
 import json
 import os.path
 import imghdr
+
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
@@ -10,9 +10,10 @@ from django.utils.encoding import smart_str
 from django.http import HttpResponse, HttpResponseForbidden
 from django.conf import settings
 
-from forms import ImageForm, FileForm
-
+from hashlib import md5
 from sorl.thumbnail import get_thumbnail
+
+from .forms import ImageForm, FileForm
 
 
 UPLOAD_PATH = getattr(settings, 'IMPERAVI_UPLOAD_PATH', 'imperavi/')

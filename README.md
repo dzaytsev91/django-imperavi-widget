@@ -1,8 +1,13 @@
 Django Imperavi editor
 ======================
+Supported versions
+------------
+Supports Django >=1.8 and Python 2/3
 
 Installation
 ------------
+
+#. pip install git+https://github.com/dzaytsev91/django-imperavi.git
 
 #. Install or add ``django-imperavi`` to your python path.
 
@@ -12,12 +17,26 @@ Installation
 
     url(r'^imperavi/', include('imperavi.urls')),
 
+Example
+-----
+```
+cd example/
+python manage.py migrate
+./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')"
+python manage.py runserver
+```
+Then go to 127.0.0.1:5000/admin/ and try to create post instance
+
+login: admin
+password: admin
+
+
 Usage
 -----
 
 The quickest way to add rich text editing capabilities to your admin is to use the included ``ImperaviAdmin`` class. For example::
 
-    from models import Category
+    from .models import Category
     from imperavi.admin import ImperaviAdmin
 
     class CategotyAdmin(ImperaviAdmin):
@@ -27,7 +46,7 @@ The quickest way to add rich text editing capabilities to your admin is to use t
 
 If you want to use it with inline admin models you need to use ``ImperaviStackedInlineAdmin`` class::
 
-    from models import Post
+    from .models import Post
     from imperavi.admin import ImperaviStackedInlineAdmin
 
     class PostInline(ImperaviStackedInlineAdmin):
@@ -40,8 +59,6 @@ Custom settings
 Add a ``IMPERAVI_CUSTOM_SETTINGS`` variable to your ``settings.py`` with custom config::
 
     IMPERAVI_CUSTOM_SETTINGS = {
-        'lang': 'ua',
-        'toolbar': 'mini',
         'resize': true
     }
 
@@ -63,7 +80,7 @@ Unique images per model
 
 If you want to serve unique media content for specific model you can add ``unique_media = True`` to your admin class::
 
-    from models import Category
+    from .models import Category
     from imperavi.admin import ImperaviAdmin
 
     class CategotyAdmin(ImperaviAdmin):
