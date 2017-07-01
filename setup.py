@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-imperavi-widget",
-    version="0.0.2",
+    version="0.0.3",
     author="Zaytsev Dmitriy",
     author_email="zaytsev_dmitriy@aol.com",
     packages=find_packages(),

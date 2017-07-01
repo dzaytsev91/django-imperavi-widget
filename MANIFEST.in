@@ -1,3 +1,3 @@
-include *.txt *.py *.rst
+include *.txt *.py *.md
 recursive-include imperavi *
 exclude *.pyc

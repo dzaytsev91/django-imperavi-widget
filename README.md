@@ -7,12 +7,12 @@ Supports Django >=1.8 and Python 2/3
 Installation
 ------------
 ```
-pip install git+https://github.com/dzaytsev91/django-imperavi-widget.git
+pip install django-imperavi-widget
 ```
 
 * Add ``imperavi`` to your ``INSTALLED_APPS`` setting.
 
-* Add imperavi URL include to your project's ``urls.py`` file::
+* Add imperavi URL include to your project's ``urls.py`` file:
 
 ```
 url(r'^imperavi/', include('imperavi.urls')),
