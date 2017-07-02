@@ -11,11 +11,20 @@ pip install django-imperavi-widget
 ```
 
 * Add ``imperavi`` to your ``INSTALLED_APPS`` setting.
+```
+INSTALLED_APPS = (
+    ...
+    'imperavi',
+)
+```
 
 * Add imperavi URL include to your project's ``urls.py`` file:
 
 ```
-url(r'^imperavi/', include('imperavi.urls')),
+urlpatterns = [
+    ...
+    url(r'^imperavi/', include('imperavi.urls')),
+]
 ```
 
 Example
@@ -29,7 +38,7 @@ python manage.py runserver
 ```
 Then go to [http://127.0.0.1:8000/admin/](127.0.0.1:8000/admin/) and try to create post instance
 
-login: admin 
+login: admin  
 password: admin
 
 

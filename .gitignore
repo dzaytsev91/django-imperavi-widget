@@ -3,3 +3,6 @@
 local_settings.py
 dist/
 example/example/public/media/
+venv/
+.idea/
+dev.db
