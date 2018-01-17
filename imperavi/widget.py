@@ -1,11 +1,18 @@
 import json
+import django
 
 from django.forms.widgets import Textarea
 from django.forms.utils import flatatt
 from django.utils.safestring import mark_safe
 from django.utils.encoding import smart_str
 from django.utils.html import conditional_escape
-from django.core.urlresolvers import reverse
+
+# Django 2.0 removes the django.core.urlresolvers module, which was moved to django.urls in version 1.10. 
+if django.VERSION >= (2, 0):
+    from django.urls import reverse
+else:
+    from django.core.urlresolvers import reverse
+
 from django.conf import settings
 
 from .views import UPLOAD_PATH
