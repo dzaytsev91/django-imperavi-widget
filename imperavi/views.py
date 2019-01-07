@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
 from django.core.files.storage import default_storage
 from django.utils.encoding import smart_str
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import JsonResponse
 from django.conf import settings
 
 from hashlib import md5
@@ -27,14 +27,14 @@ def upload_image(request, upload_path=None):
     if form.is_valid():
         image = form.cleaned_data['file']
         if image.content_type not in ['image/png', 'image/jpg', 'image/jpeg', 'image/pjpeg']:
-            return HttpResponse('Bad image format')
+            return JsonResponse({'error': 'Bad image format'}, status=400)
         image_name, extension = os.path.splitext(image.name)
         m = md5(smart_str(image_name).encode('utf-8'))
         hashed_name = '{0}{1}'.format(m.hexdigest(), extension)
         image_path = default_storage.save(os.path.join(upload_path or UPLOAD_PATH, hashed_name), image)
         image_url = default_storage.url(image_path)
-        return HttpResponse(json.dumps({'filelink': image_url}))
-    return HttpResponseForbidden()
+        return JsonResponse({'filelink': image_url})
+    return JsonResponse({}, status=403)
 
 
 @user_passes_test(lambda user: user.is_staff)
@@ -49,8 +49,8 @@ def uploaded_images_json(request, upload_path=None):
                 thumb = get_thumbnail(image_path, '100x74', crop='center')
                 image_url = os.path.join(settings.MEDIA_URL, upload_path, image)
                 results.append({'thumb': thumb.url, 'image': image_url})
-        return HttpResponse(json.dumps(results))
-    return HttpResponse('{}')
+        return JsonResponse(results)
+    return JsonResponse({}, status=403)
 
 
 @require_POST
@@ -64,6 +64,6 @@ def upload_file(request, upload_path=None, upload_link=None):
         image_path = default_storage.save(path, uploaded_file)
         image_url = default_storage.url(image_path)
         if upload_link:
-            return HttpResponse(image_url)
-        return HttpResponse(json.dumps({'filelink': image_url, 'filename': uploaded_file.name}))
-    return HttpResponseForbidden()
+            return JsonResponse({'filelink': image_url})
+        return JsonResponse({'filelink': image_url, 'filename': uploaded_file.name})
+    return JsonResponse({}, status=403)

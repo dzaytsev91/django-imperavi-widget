@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 from django.utils.encoding import smart_str
 from django.utils.html import conditional_escape
 
-# Django 2.0 removes the django.core.urlresolvers module, which was moved to django.urls in version 1.10. 
+# Django 2.0 removes the django.core.urlresolvers module, which was moved to django.urls in version 1.10.
 try:
     from django.core.urlresolvers import reverse
 except ImportError:
@@ -30,7 +30,13 @@ class ImperaviWidget(Textarea):
 
     def render(self, name, value, attrs=None, renderer=None):
         value = '' if not value else value
-        final_attrs = self.build_attrs(attrs, extra_attrs={'name': name})
+
+        if attrs is None:
+            attrs = {}
+        attrs.update({'name': name})
+
+        final_attrs = self.build_attrs(attrs)
+
         field_id = final_attrs.get('id')
         self.imperavi_settings.update({
             'imageUpload': reverse('imperavi-upload-image', kwargs={'upload_path': self.upload_path}),
